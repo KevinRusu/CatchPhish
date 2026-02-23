@@ -1,0 +1,12 @@
+http://192.168.1.100/paypal/login.php
+http://g00gle-login.tk/verify-account
+https://bit.ly/3xR7abc
+http://secure.paypal.com.evil-domain.xyz/signin
+http://xn--pple-43d.com/appleid/login
+http://amaz0n-support.pw/account/verify?redirect=http://steal.com
+data:text/html,<script>alert('phish')</script>
+http://login.microsoft.com@evil.com/auth
+http://a.b.c.d.secure-banking.club/credential-update.exe
+https://www.google.com
+https://github.com/user/repo
+https://www.cmu.edu

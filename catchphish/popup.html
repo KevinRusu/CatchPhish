@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CatchPhish</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M64 8L16 32v32c0 28.8 20.4 55.6 48 64 27.6-8.4 48-35.2 48-64V32L64 8z" fill="#22c55e" opacity="0.9"/>
+          <path d="M64 14L22 35.5v28.5c0 26 18.4 50.2 42 57.8V14z" fill="#16a34a" opacity="0.3"/>
+          <path d="M54 62l8 8 18-18" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <h1>CatchPhish</h1>
+      </div>
+      <span class="version">v1.0</span>
+    </header>
+
+    <!-- URL Display -->
+    <div class="url-section">
+      <span class="label">Current URL</span>
+      <p class="url-text" id="current-url">Loading...</p>
+    </div>
+
+    <!-- Score Ring -->
+    <div class="score-section">
+      <div class="score-ring" id="score-ring">
+        <svg viewBox="0 0 120 120" width="120" height="120">
+          <circle cx="60" cy="60" r="52" stroke="#2a2a3a" stroke-width="10" fill="none"/>
+          <circle cx="60" cy="60" r="52" stroke="#22c55e" stroke-width="10" fill="none"
+                  stroke-dasharray="326.7" stroke-dashoffset="326.7" stroke-linecap="round"
+                  transform="rotate(-90 60 60)" id="score-arc"/>
+        </svg>
+        <div class="score-value" id="score-value">0</div>
+      </div>
+      <div class="score-meta">
+        <span class="risk-badge" id="risk-badge">SAFE</span>
+        <div class="https-status" id="https-status">
+          <span class="https-icon">&#x2705;</span>
+          <span class="https-text">HTTPS Secured</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Domain Info -->
+    <div class="info-row">
+      <span class="label">Domain</span>
+      <span class="value" id="domain-value">—</span>
+    </div>
+
+    <!-- Findings -->
+    <div class="findings-section">
+      <button class="findings-toggle" id="findings-toggle">
+        <span>Findings</span>
+        <span class="findings-count" id="findings-count">0</span>
+        <span class="toggle-arrow" id="toggle-arrow">&#x25BC;</span>
+      </button>
+      <div class="findings-list" id="findings-list">
+        <div class="finding-empty" id="finding-empty">No issues detected.</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      Heuristic-based &bull; No data sent &bull; 100% local
+    </footer>
+  </div>
+
+  <script src="detector.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

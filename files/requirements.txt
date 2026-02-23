@@ -1,0 +1,2 @@
+# PhishGuard - Zero external dependencies!
+# Uses only Python standard library (re, math, urllib, json, argparse, dataclasses)

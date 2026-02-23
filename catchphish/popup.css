@@ -1,0 +1,281 @@
+/* ── CatchPhish Popup — Dark Theme ─────────────────────────────────── */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  min-height: 200px;
+  background: #0f0f17;
+  color: #e4e4ef;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo h1 {
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #22c55e, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.version {
+  font-size: 11px;
+  color: #6b7280;
+  background: #1a1a2e;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ── URL Section ────────────────────────────────────────────────────── */
+
+.url-section {
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.url-text {
+  font-size: 12px;
+  color: #a5b4fc;
+  word-break: break-all;
+  margin-top: 4px;
+  max-height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Score Section ──────────────────────────────────────────────────── */
+
+.score-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 8px 0;
+}
+
+.score-ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.score-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: 800;
+  color: #22c55e;
+}
+
+.score-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.risk-badge {
+  display: inline-block;
+  padding: 4px 16px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  background: #22c55e;
+  color: #fff;
+}
+
+.https-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.https-icon {
+  font-size: 14px;
+}
+
+.https-text {
+  color: #9ca3af;
+}
+
+/* ── Info Row ────────────────────────────────────────────────────────── */
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a2e;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.info-row .value {
+  font-size: 12px;
+  color: #d1d5db;
+  text-align: right;
+  word-break: break-all;
+  max-width: 240px;
+}
+
+/* ── Findings Section ───────────────────────────────────────────────── */
+
+.findings-section {
+  background: #1a1a2e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.findings-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: none;
+  border: none;
+  color: #e4e4ef;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+}
+
+.findings-toggle:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.findings-count {
+  background: #374151;
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.toggle-arrow {
+  margin-left: auto;
+  font-size: 10px;
+  color: #6b7280;
+  transition: transform 0.2s;
+}
+
+.toggle-arrow.open {
+  transform: rotate(180deg);
+}
+
+.findings-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.findings-list.open {
+  max-height: 600px;
+}
+
+.finding-empty {
+  padding: 12px;
+  text-align: center;
+  color: #22c55e;
+  font-size: 12px;
+}
+
+.finding-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 1px solid #252538;
+}
+
+.finding-desc {
+  font-size: 12px;
+  color: #d1d5db;
+  flex: 1;
+}
+
+.finding-score {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.finding-score.high {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.finding-score.medium {
+  background: rgba(234, 179, 8, 0.15);
+  color: #facc15;
+}
+
+.finding-score.low {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────────── */
+
+.footer {
+  text-align: center;
+  font-size: 10px;
+  color: #4b5563;
+  padding-top: 4px;
+}
+
+/* ── Risk Level Colors ──────────────────────────────────────────────── */
+
+.risk-safe     { background: #22c55e; color: #fff; }
+.risk-low      { background: #3b82f6; color: #fff; }
+.risk-medium   { background: #eab308; color: #1a1a1a; }
+.risk-high     { background: #f97316; color: #fff; }
+.risk-critical { background: #ef4444; color: #fff; }
