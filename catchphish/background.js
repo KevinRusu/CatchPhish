@@ -33,7 +33,21 @@ async function analyzeTab(tabId, url) {
     return;
   }
 
+  console.group(`[CatchPhish] Analyzing tab ${tabId}`);
+  console.log('URL received from browser:', url);
+
   const result = CatchPhish.analyzeURL(url);
+
+  console.log('Analysis result:', {
+    domain:   result.domain,
+    isHTTPS:  result.isHTTPS,
+    score:    `${result.score}/100`,
+    level:    result.level,
+    findings: result.findings.length
+      ? result.findings.map(f => `${f.id} (+${f.score}): ${f.description}`)
+      : ['none — URL appears safe']
+  });
+  console.groupEnd();
 
   // Store result so popup and content script can access it
   await chrome.storage.local.set({ [`result_${tabId}`]: result });

@@ -246,7 +246,14 @@
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'CATCHPHISH_RESULT' && message.result) {
-      showBanner(message.result);
+      const r = message.result;
+      console.group('[CatchPhish] Warning banner triggered by background result');
+      console.log('Domain  :', r.domain);
+      console.log('Score   :', `${r.score}/100`);
+      console.log('Level   :', r.level);
+      console.log('Findings:', r.findings.map(f => f.description));
+      console.groupEnd();
+      showBanner(r);
     }
   });
 
@@ -254,7 +261,9 @@
   // Also run analysis from content script side in case background hasn't sent message yet
 
   if (typeof CatchPhish !== 'undefined') {
+    console.log('[CatchPhish] Content script self-analyzing:', window.location.href);
     const result = CatchPhish.analyzeURL(window.location.href);
+    console.log('[CatchPhish] Self-analysis result → level:', result.level, '| score:', result.score);
     if (result.level === 'MEDIUM' || result.level === 'HIGH' || result.level === 'CRITICAL') {
       // Small delay to let page render a bit first
       if (document.readyState === 'loading') {

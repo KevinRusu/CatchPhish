@@ -299,6 +299,18 @@ const CatchPhish = (() => {
       return { url, score: 0, level: 'SAFE', color: 'green', findings: [], isHTTPS: parsed.protocol === 'https:', domain: parsed.hostname };
     }
 
+    // Log the URL components that the heuristics will inspect
+    console.group('[CatchPhish] URL components extracted for analysis');
+    console.log('protocol   :', parsed.protocol);
+    console.log('hostname   :', parsed.hostname);
+    console.log('pathname   :', parsed.pathname);
+    console.log('search     :', parsed.search || '(none)');
+    console.log('full URL   :', url);
+    console.log('URL length :', url.length, 'chars');
+    console.log('subdomain levels:', parsed.hostname.split('.').length - 2);
+    console.log('Shannon entropy (hostname):', shannonEntropy(parsed.hostname).toFixed(3));
+    console.groupEnd();
+
     const findings = [];
     const checks = [
       checkIPAddress(parsed),
@@ -326,12 +338,23 @@ const CatchPhish = (() => {
     const rawScore = findings.reduce((sum, f) => sum + f.score, 0);
     const score = Math.min(rawScore, 100);
 
+    if (findings.length > 0) {
+      console.group('[CatchPhish] Heuristics that fired');
+      findings.forEach(f => console.log(`  [+${String(f.score).padStart(2)}] ${f.id}: ${f.description}`));
+      console.log(`Raw score: ${rawScore} → capped at: ${score}/100`);
+      console.groupEnd();
+    } else {
+      console.log('[CatchPhish] No heuristics fired — score: 0/100');
+    }
+
     let level, color;
     if (score >= 70)      { level = 'CRITICAL'; color = 'red'; }
     else if (score >= 45) { level = 'HIGH';     color = 'orange'; }
     else if (score >= 25) { level = 'MEDIUM';   color = 'yellow'; }
     else if (score >= 10) { level = 'LOW';      color = 'blue'; }
     else                  { level = 'SAFE';     color = 'green'; }
+
+    console.log(`[CatchPhish] Verdict → ${level} (score ${score}/100, thresholds: SAFE<10, LOW<25, MEDIUM<45, HIGH<70, CRITICAL≥70)`);
 
     return {
       url,
